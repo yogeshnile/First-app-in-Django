@@ -28,13 +28,13 @@ def about(request):
 
 def search(request):
     query = request.GET['query']
-    if len(query) > 50:
+    if len(query) > 50 or len(query) == 0:
         allpost = Post.objects.none()
     else:
         allposttitle = Post.objects.filter(title__icontains=query)
         allpostcontent = Post.objects.filter(content__icontains=query)
         allpostauthor = Post.objects.filter(author__icontains=query)
-        
+
         allpostblog = allposttitle.union(allpostcontent)
         allpost = allpostblog.union(allpostauthor)
     params = {
