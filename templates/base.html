@@ -42,12 +42,17 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
       <a href="/admin" role="button" target="_blank" class="btn btn-outline-warning my-2 mx-2 my-sm-0">Admin</a>
+      {% if user.is_authenticated %}
+      <h5 class="my-2 mx-2 my-sm-0" style="color: white;">Hello {{ request.user }}!</h5>
+      <a href="/logout" role="button" class="btn btn-danger my-2 mx-2 my-sm-0">LogOut</a>
+      {% else %}
       <!-- Button trigger signup modal -->
       <button type="button" class="btn btn-primary my-2 mx-2 my-sm-0" data-toggle="modal"
         data-target="#signupModal">SignUp</button>
       <!-- Button trigger login modal -->
       <button type="button" class="btn btn-primary my-2 mx-2 my-sm-0" data-toggle="modal"
         data-target="#loginModal">LogIn</button>
+      {% endif %}
     </div>
   </nav>
 
@@ -62,10 +67,16 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form method="POST" action="/signup">
+            {% csrf_token %}
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="name"> First Name</label>
               <input type="name" class="form-control" id="name" name="name" aria-describedby="name" Required="">
+            </div>
+            <div class="form-group">
+              <label for="lastname">Last Name</label>
+              <input type="lastname" class="form-control" id="lastname" name="lastname" aria-describedby="lastname"
+                Required="">
             </div>
             <div class="form-group">
               <label for="username">UserName</label>
@@ -74,11 +85,7 @@
             </div>
             <div class="form-group">
               <label for="email">Email address</label>
-              <input type="email" class="form-control" id="email" name="name" aria-describedby="emailHelp" required="">
-            </div>
-            <div class="form-group">
-              <label for="phone">Mobile No.</label>
-              <input type="phone" class="form-control" id="phone" name="phone" aria-describedby="phoneHelp" Required="">
+              <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required="">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
@@ -89,6 +96,7 @@
               <input type="password" class="form-control" id="cpassword" name="cpassword" required="">
             </div>
             <button type="submit" class="btn btn-primary">SignUp</button>
+            <input class="btn btn-primary" type="reset" value="Reset">
           </form>
         </div>
         <div class="modal-footer">
@@ -109,17 +117,19 @@
           </button>
         </div>
         <div class="modal-body">
-          <form>
+          <form method="POST" action="/login">
+            {% csrf_token %}
             <div class="form-group">
-              <label for="email">Email address</label>
-              <input type="email" class="form-control" id="loginemail" name="loginemail" aria-describedby="emailHelp"
-                required="">
+              <label for="username">UserName</label>
+              <input type="username" class="form-control" id="loginusername" name="loginusername"
+                aria-describedby="emailHelp" required="">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
               <input type="password" class="form-control" id="loginpassword" name="loginpassword" required="">
             </div>
             <button type="submit" class="btn btn-primary">LogIn</button>
+            <input class="btn btn-primary" type="reset" value="Reset">
           </form>
         </div>
         <div class="modal-footer">

@@ -1,7 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, redirect
 from .models import Contact
 from blog.models import Post
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def home(request):
@@ -42,3 +44,47 @@ def search(request):
         'query':query,
     }
     return render(request, 'home/search.html', params)
+
+def handleSignup(request):
+    if request.method == 'POST':
+        fname = request.POST['name']
+        lname = request.POST['lastname']
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        cpassword = request.POST['cpassword']
+
+        if not username.isalnum():
+            messages.error(request, "Username should be alphanumeric")
+
+        if password == cpassword:
+            myuser = User.objects.create_user(username, email, password)
+            myuser.first_name = fname
+            myuser.last_name = lname
+            myuser.save()
+            messages.success(request, "Account Create Successfully")
+        else:
+            messages.error(request, "Password not correct")
+        
+        return redirect('home')
+    return redirect('home')
+
+def handlelogin(request):
+    if request.method == 'POST':
+        username = request.POST['loginusername']
+        loginpassword = request.POST['loginpassword']
+
+        user = authenticate(username=username, password=loginpassword)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Successfully Logged In")
+            return redirect('home')
+        else:
+            messages.error(request, "Login Unsuccessful")
+            return redirect('home')
+    return redirect('home')
+
+def handlelogout(request):
+    logout(request)
+    messages.success(request, "Logout Successfully")
+    return redirect('home')
