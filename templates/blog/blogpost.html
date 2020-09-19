@@ -29,26 +29,50 @@
     <form action="/blog/postcomment" method="post">
         {% csrf_token %}
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
             <input type="text" class="form-control" name="comment" id="comment" aria-describedby="text"
                 placeholder="Enter Comment here">
         </div>
+        <input type="hidden" name="perentSno" id="perentSno" value="">
         <input type="hidden" name="postSno" id="postSno" value="{{ post.sno }}">
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>{% else %}
     <p>Please loging to post comment</p>
     <!-- Button trigger signup modal -->
-      <button type="button" class="btn btn-primary my-2 mx-2 my-sm-0" data-toggle="modal"
+    <button type="button" class="btn btn-primary my-2 mx-2 my-sm-0" data-toggle="modal"
         data-target="#signupModal">SignUp</button>
-      <!-- Button trigger login modal -->
-      <button type="button" class="btn btn-primary my-2 mx-2 my-sm-0" data-toggle="modal"
+    <!-- Button trigger login modal -->
+    <button type="button" class="btn btn-primary my-2 mx-2 my-sm-0" data-toggle="modal"
         data-target="#loginModal">LogIn</button>
     {% endif %}
     {% for comment in comment %}
     <div class="row my-3">
-        <div class="col-md-1"><img src="https://img.icons8.com/doodle/50/000000/user-male.png"/></div>
-        <div class="col-md-11"><b> {{ comment.user.username }}</b> <span class="badge badge-secondary"> {{ comment.timestamp | naturaltime }}</span>
-        <div> {{ comment.comment}}</div>
+        <div class="col-md-1"><img src="https://img.icons8.com/doodle/50/000000/user-male.png" /></div>
+        <div class="col-md-11"><b> {{ comment.user.username }}</b> <span class="badge badge-secondary">
+                {{ comment.timestamp | naturaltime }}</span>
+            <div> {{ comment.comment}}</div>
+            <div class="replay ms-0">
+
+                <button class="btn btn-sm btn-primary" type="button" data-toggle="collapse"
+                    data-target="#replayBox{{ comment.sno }}" aria-expanded="false"
+                    aria-controls="replayBox{{ comment.sno }}">
+                    Replay
+                </button>
+                <br>
+                <div class="collapse" id="replayBox{{ comment.sno }}">
+                    <div class="card card-body my-2">
+                        <form action="/blog/postcomment" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="comment" id="commentreply"
+                                    aria-describedby="text" placeholder="Enter Replay here">
+                                <input type="hidden" name="perentSno" id="perentSno" value="{{ comment.sno }}">
+                            </div>
+                            <input type="hidden" name="postSno" id="postSno" value="{{ post.sno }}">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     {% endfor %}

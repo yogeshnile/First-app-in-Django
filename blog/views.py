@@ -16,16 +16,22 @@ def blogpost(request, slug):
 
 def Postcomment(request):
     if request.method == 'POST':
-        print("recevied")
         comment = request.POST['comment']
         user = request.user
         postSno = request.POST['postSno']
         post = Post.objects.get(sno=postSno)
-        # parent = request.POST.get('comment')
+        parent = request.POST['perentSno']
 
-        Scomment = BlogComment(comment=comment, user=user, post=post)
-        Scomment.save()
-        messages.success(request, "Comment Added Successfully")
-        return redirect(f"/blog/{post.slug}")
+        if parent == "":
+            Scomment = BlogComment(comment=comment, user=user, post=post)
+            Scomment.save()
+            messages.success(request, "Comment Added Successfully")
+            return redirect(f"/blog/{post.slug}")
+        else:
+            parent = BlogComment.objects.get(sno=parent)
+            Scomment = BlogComment(comment=comment, user=user, post=post, parent=parent)
+            Scomment.save()
+            messages.success(request, "Replay Added Successfully")
+            return redirect(f"/blog/{post.slug}")
         
     return redirect('home')
