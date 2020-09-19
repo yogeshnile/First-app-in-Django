@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock title %}
+{% block title %} {{ post.title }} | Author- {{post.author}} | iCoder Blog{% endblock title %}
 
 {% block body %}
 <div class="container my-4">
@@ -9,6 +9,30 @@
         <p class="blog-post-meta">{{ post.timeStamp }} by <a href="#">{{ post.author }}</a></p>
         <hr>
         <p>{{ post.content }}</p>
+    </div>
+</div>
+<div class="container">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>{{ message.tags }}</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>{% endfor %}
+    {% endif %}
+</div>
+<div class="container">
+    <h2>Comments:</h2>
+    <form action="/blog/postcomment" method="post">
+        {% csrf_token %}
+        <input type="text" name="comment" id="comment" placeholder="Enter Comment here">
+        <input type="hidden" name="postSno" id="postSno" value="{{ post.sno }}">
+        <input type="submit" value="Submit">
+    </form>
+    <div class="row my-3">
+        <div class="col-md-2">image here</div>
+        <div class="col-md-10">Comment here</div>
     </div>
 </div>
 {% endblock body %}
