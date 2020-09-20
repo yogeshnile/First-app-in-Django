@@ -25,15 +25,23 @@
   </div>
   <div class="container">
     <h2>Popular Blogs</h2>
-    <div class="card">
+    {% for allpost in allposts %}
+    <div class="card my-2">
       <div class="card-header">
         Featured
       </div>
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Read More...</a>
+        <h5 class="card-title">{{ allpost.title }}</h5>
+        <p class="card-text previews">{{ allpost.content| truncatechars:200 }}</p>
+        <a href="/blog/{{ allpost.slug }}" class="btn btn-primary">Read More...</a>
       </div>
     </div>
+    {% endfor %}
   </div>
+  <script>
+  let previews = document.getElementsByClassName('previews');
+  Array.from(previews).forEach((element)=>{
+    element.innerHTML = element.innerText;
+  })
+</script>
   {% endblock body %}

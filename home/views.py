@@ -7,7 +7,9 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def home(request):
-    return render(request, 'home/home.html')
+    allpost = Post.objects.all()
+    context = {'allposts': allpost}
+    return render(request, 'home/home.html', context)
 
 def contact(request):
     if request.method == 'POST':
