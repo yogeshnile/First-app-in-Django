@@ -18,15 +18,17 @@
 
 **2).** Run Shell Script
   - Clone github repository in your local system  `git clone https://github.com/yogeshnile/unix.git`
-  - Give execute permission to [crud-in-python.sh](https://github.com/yogeshnile/unix/blob/master/crud-in-python.sh) file via  `chmod +x crud-in-python.sh`
-  - Run crud-in-python.sh file using `./crud-in-python.sh`
+  - Give execute permission to [First-app-in-Django.sh](https://github.com/yogeshnile/unix/blob/master/First-app-in-Django.sh) file via  `chmod +x First-app-in-Django.sh`
+  - Run First-app-in-Django.sh file using `./First-app-in-Django.sh`
   - Go to your browser and type http://127.0.0.1:8000/ in the address bar.
   - Finished...
 
 # Technology used in Project :hotsprings:
 <img target="_blank" src="https://github.com/yogeshnile/technology/blob/master/django.png" width="300">
 
-
+## ScreenShot :camera_flash:
+![](https://github.com/yogeshnile/First-app-in-Django/blob/master/Images/1.png)    ![](https://github.com/yogeshnile/First-app-in-Django/blob/master/Images/2.png)
+![](https://github.com/yogeshnile/First-app-in-Django/blob/master/Images/3.png)    ![](https://github.com/yogeshnile/First-app-in-Django/blob/master/Images/4.png)
 
 ## Bug / Feature Request :man_technologist:
 If you find a bug (the website couldn't handle the query and / or gave undesired results), kindly open an issue [here](https://github.com/yogeshnile/First-app-in-Django/issues/new) by including your search query and the expected result.
