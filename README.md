@@ -26,6 +26,107 @@
 # Technology used in Project :hotsprings:
 <img target="_blank" src="https://github.com/yogeshnile/technology/blob/master/django.png" width="300">
 
+# Directory Tree :cactus:
+<details><summary>Show Tree</summary>
+ 
+```bash
+ .
+├── blog
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_post_slug.py
+│   │   ├── 0003_auto_20200919_1144.py
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   │       ├── 0001_initial.cpython-36.pyc
+│   │       ├── 0002_post_slug.cpython-36.pyc
+│   │       ├── 0003_auto_20200919_1144.cpython-36.pyc
+│   │       └── __init__.cpython-36.pyc
+│   ├── models.py
+│   ├── __pycache__
+│   │   ├── admin.cpython-36.pyc
+│   │   ├── apps.cpython-36.pyc
+│   │   ├── __init__.cpython-36.pyc
+│   │   ├── models.cpython-36.pyc
+│   │   ├── urls.cpython-36.pyc
+│   │   └── views.cpython-36.pyc
+│   ├── templatetags
+│   │   ├── extras.py
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   │       ├── extras.cpython-36.pyc
+│   │       └── __init__.cpython-36.pyc
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── db.sqlite3
+├── First-app-in-Django.sh
+├── home
+│   ├── admin.py
+│   ├── apps.py
+│   ├── __init__.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   ├── 0002_contact_timestamp.py
+│   │   ├── __init__.py
+│   │   └── __pycache__
+│   │       ├── 0001_initial.cpython-36.pyc
+│   │       ├── 0002_contact_timestamp.cpython-36.pyc
+│   │       └── __init__.cpython-36.pyc
+│   ├── models.py
+│   ├── __pycache__
+│   │   ├── admin.cpython-36.pyc
+│   │   ├── apps.cpython-36.pyc
+│   │   ├── __init__.cpython-36.pyc
+│   │   ├── models.cpython-36.pyc
+│   │   ├── urls.cpython-36.pyc
+│   │   └── views.cpython-36.pyc
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+├── iCoder
+│   ├── asgi.py
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-36.pyc
+│   │   ├── settings.cpython-36.pyc
+│   │   ├── urls.cpython-36.pyc
+│   │   └── wsgi.cpython-36.pyc
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── Images
+│   ├── 1.png
+│   ├── 2.png
+│   ├── 3.png
+│   └── 4.png
+├── LICENSE
+├── manage.py
+├── README.md
+├── requirements.txt
+├── static
+│   └── favicon.png
+└── templates
+    ├── 404.html
+    ├── base.html
+    ├── blog
+    │   ├── bloghome.html
+    │   └── blogpost.html
+    └── home
+        ├── about.html
+        ├── contact.html
+        ├── home.html
+        └── search.html
+
+17 directories, 72 files
+
+```
+
+</details>
+
 ## ScreenShot :camera_flash:
 ![](https://github.com/yogeshnile/First-app-in-Django/blob/master/Images/1.png)    ![](https://github.com/yogeshnile/First-app-in-Django/blob/master/Images/2.png)
 ![](https://github.com/yogeshnile/First-app-in-Django/blob/master/Images/3.png)    ![](https://github.com/yogeshnile/First-app-in-Django/blob/master/Images/4.png)
