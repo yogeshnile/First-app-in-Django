@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import Post, BlogComment
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from .models import Post, BlogComment, Like
 from django.contrib import messages
 from .templatetags import extras
 
@@ -49,3 +49,22 @@ def Postcomment(request):
             return redirect(f"/blog/{post.slug}")
         
     return redirect('home')
+
+def like_post_view(request,slug):
+    # if not request.user.is_authenticated:
+    #     return HttpResponse("You must login to like this post!")
+    post = get_object_or_404(Post, slug=slug)
+    # i am not sure about your authentication system. make sure that writer of the post is not allowed to
+    # like the post
+    # if post.author != request.user.username:
+    #     return HttpResponse("You cannot like the post that you have written")
+    newlike, created = Like.objects.get_or_create(user=request.user, post=post)
+    if not created:
+        return blogpost(request,slug)
+    else:
+        post.likes += 1
+        post.save()
+        return blogpost(request,slug)
+
+    
+    
