@@ -14,6 +14,8 @@
     </div>
     <hr>
 </div>
+<p>#likes = {{ post.likes }}</p>
+<a href="{% url 'blog:like' post.slug %}">Like</a>
 <div class="container">
     {% if messages %}
     {% for message in messages %}

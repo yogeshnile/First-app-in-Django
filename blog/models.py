@@ -10,6 +10,7 @@ class Post(models.Model):
     content = models.TextField()
     slug = models.CharField(max_length=130)
     timeStamp = models.DateTimeField(default=now, blank=True)
+    likes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.author + " - " + self.title
@@ -24,3 +25,9 @@ class BlogComment(models.Model):
 
     def __str__(self):
         return self.user.username + " - " + self.comment[0:15] + "..."
+
+class Like(models.Model):
+    objects = models.Manager()
+    user    = models.ForeignKey(User, on_delete=models.CASCADE)
+    post    = models.ForeignKey(Post, on_delete=models.CASCADE)
+    
